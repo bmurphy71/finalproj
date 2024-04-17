@@ -17,7 +17,7 @@ rams = []
 
 teams = [chiefs, broncos, patriots, panthers, rams]
 team_names = ["Chiefs", "Broncos", "Patriots", "Panthers", "Rams"]
-
+#########################################################################################
 # Function to generate a random name
 def generate_random_name():
     first_names = ["Tom", "John", "Mike", "Chris", "David", "Matt", "Steve", "Alex", "Andrew", "Mark"]
@@ -31,7 +31,7 @@ def create_player():
     position = random.choice(positions)
     overall = random.randint(70, 99)  # Random overall rating between 70 and 99
     return {"name": name, "position": position, "overall": overall}
-
+######################################################################################################
 # Add players to each team
 for team, team_name in zip(teams, team_names):
     for _ in range(6):  # Set 6 players per team
