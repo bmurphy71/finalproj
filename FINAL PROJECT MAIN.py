@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Wed Apr 17 12:02:43 2024
+Created on Wed Apr 17 17:19:05 2024
 
-@author: brendanmurphy
+@author: Austin and Brenden
 """
 class Player:
     def __init__(self, name, position, overall_rating):
@@ -134,22 +132,32 @@ teams = [
     generate_team("Crimson Tide", players_info[21:28]),
     generate_team("Patriots", players_info[28:])
 ]
+def trading_loop():
+    while True:
+        print("\nTrade Simulator Menu:")
+        print("1. Trade Players")
+        print("2. View Rosters")
+        print("3. Quit")
+        choice = input("Choose an option: ")
 
+        if choice == "1":
+            trade_players()
+        elif choice == "2":
+            view_rosters()
+        elif choice == "3":
+            print("Exiting Trade Simulator.")
+            break
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
 while True:
-    print("\nTrade Simulator Menu:")
-    print("1. Trade Players")
-    print("2. View Rosters")
-    print("3. Quit")
-    choice = input("Choose an option: ")
-
-    if choice == "1":
-        trade_players()
-    elif choice == "2":
+    print("\Madden Menu: ")
+    print("1. Trade Players ")
+    print("2. View Roster ")
+    main_choice = input("Choose an option")
+    
+    if main_choice == "1":
+        trading_loop()
+    elif main_choice == "2":
         view_rosters()
-    elif choice == "3":
-        print("Exiting Trade Simulator.")
-        break
     else:
-        print("Invalid choice. Please enter 1, 2, or 3.")
-
-
+        print("Invalid Choice, press 1 or 2")
