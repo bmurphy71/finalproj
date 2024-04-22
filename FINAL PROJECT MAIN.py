@@ -33,7 +33,12 @@ def display_players(team):
     for i, player in enumerate(team.players):
         print(f"{i+1}. Name: {player.name}, Position: {player.position}, Overall Rating: {player.overall_rating}")
 
-# Function to trade players between teams
+def view_rosters():
+    print("Current Rosters:")
+    for team in teams:
+        print(f"\nTeam: {team.name}")
+        display_players(team)
+
 def trade_players():
     print("Teams:")
     for i, team_name in enumerate(team_names):
@@ -48,12 +53,11 @@ def trade_players():
         print(f"Players in {team_names[user_input]}:")
         display_players(team_from)
 
-        player_index = int(input("Choose the player index to trade: "))
+        player_index = int(input("Choose the player index to trade: ")) - 1
         if player_index < 0 or player_index >= len(team_from.players):
             print("Invalid player index. Please choose a valid index.")
             return
-        player_to_trade = team_from.players[player_index]
-        team_from.remove_player(player_to_trade)
+        player_to_trade = team_from.players.pop(player_index)
 
         user_input = int(input("Choose a team to trade to (enter number): ")) - 1
         if user_input < 0 or user_input >= len(teams):
@@ -64,19 +68,19 @@ def trade_players():
         print(f"Players in {team_names[user_input]}:")
         display_players(team_to)
 
-        player_return_index = int(input("Choose the player index to receive in return: "))
+        player_return_index = int(input("Choose the player index to receive in return: ")) - 1
         if player_return_index < 0 or player_return_index >= len(team_to.players):
             print("Invalid player index. Please choose a valid index.")
             return
-
-        player_returned = team_to.players[player_return_index]
-        team_to.remove_player(player_returned)
+        player_returned = team_to.players.pop(player_return_index)
 
         # Perform the trade
         team_from.add_player(player_returned)
         team_to.add_player(player_to_trade)
 
         print("Trade successful!")
+        view_rosters()
+
     except ValueError:
         print("Invalid input. Please enter a valid number.")
 
@@ -134,16 +138,18 @@ teams = [
 while True:
     print("\nTrade Simulator Menu:")
     print("1. Trade Players")
-    print("2. Quit")
+    print("2. View Rosters")
+    print("3. Quit")
     choice = input("Choose an option: ")
 
     if choice == "1":
         trade_players()
     elif choice == "2":
+        view_rosters()
+    elif choice == "3":
         print("Exiting Trade Simulator.")
         break
     else:
-        print("Invalid choice. Please enter 1 or 2.")
-
+        print("Invalid choice. Please enter 1, 2, or 3.")
 
 
